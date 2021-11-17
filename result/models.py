@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from enum import unique
 from django.db import models
 
 
@@ -72,9 +73,8 @@ class AnnouncedPuResults(models.Model):
 
     def polling_unit_name(self):
         unit = PollingUnit.objects.filter(
-            polling_unit_id=int(self.polling_unit_uniqueid)).first()
-        print (unit)
-        return unit
+            unique=int(self.polling_unit_uniqueid)).first()
+        return unit.polling_unit_name
 
 
 class AnnouncedStateResults(models.Model):
