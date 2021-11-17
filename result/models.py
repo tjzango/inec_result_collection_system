@@ -6,7 +6,6 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from django.shortcuts import get_list_or_404
 
 
 class Agentname(models.Model):
@@ -72,10 +71,11 @@ class AnnouncedPuResults(models.Model):
         db_table = 'announced_pu_results'
 
     def polling_unit_name(self):
-        polling_unit_id = int(self.polling_unit_uniqueid)
-        unit = get_list_or_404(PollingUnit, polling_unit_id=polling_unit_id)
-        print(unit)
-        return unit.lga_id
+        unit = PollingUnit.objects.filter(
+            polling_unit_id=int(self.polling_unit_uniqueid)).first()
+        for i in unit:
+            print(i)
+        return unit.polling_unit_name
 
 
 class AnnouncedStateResults(models.Model):
