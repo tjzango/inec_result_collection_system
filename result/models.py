@@ -129,7 +129,7 @@ class AnnouncedLgaResults(models.Model):
 
 class AnnouncedPuResults(models.Model):
     result_id = models.AutoField(primary_key=True)
-    polling_unit_uniqueid = models.ForeignKey() #CharField(max_length=50)
+    polling_unit_uniqueid = models.ForeignKey(PollingUnit, on_delete=models.CASCADE, db_column="pollinguniqueid") #CharField(max_length=50)
     party_abbreviation = models.CharField(max_length=4)
     party_score = models.IntegerField()
     entered_by_user = models.CharField(max_length=50)
