@@ -23,7 +23,7 @@ class BasePage(View):
         }
         if key:
             data = PollingUnit.objects.filter(uniqueid=key)
-            context["lga-results"] = data
+            context["lga_results"] = data
             
         context['polling_units_relults'] = AnnouncedPuResults.objects.all(),
         context['lgas'] = Lga.objects.all()
