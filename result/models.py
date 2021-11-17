@@ -68,7 +68,7 @@ class Ward(models.Model):
 class PollingUnit(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
-    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="ward_id")
+    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="ward_id", related_name="tokyo")
     lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE, db_column="lga_id")
     uniquewardid = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="uniquewardid", blank=True, null=True)
     polling_unit_number = models.CharField(
