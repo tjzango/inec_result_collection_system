@@ -49,7 +49,7 @@ class Party(models.Model):
 
 
 class Ward(models.Model):
-    uniqueid = models.AutoField(primary_key=True)
+    ward_uniqueid = models.AutoField(primary_key=True)
     ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
     lga_id = models.ForeignKey(
@@ -68,15 +68,13 @@ class Ward(models.Model):
 
 
 class PollingUnit(models.Model):
-    uniqueid = models.AutoField(primary_key=True)
+    pollinguniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
-    '''ward_id = models.ForeignKey(
-        Ward, on_delete=models.CASCADE, db_column="ward_id", related_name="tokyo")
+    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="ward_id", related_name="ward_non_default_id")
     lga_id = models.ForeignKey(
-        Lga, on_delete=models.CASCADE, db_column="uniqueid")
+        Lga, on_delete=models.CASCADE, db_column="lga_uniqueid")
     uniquewardid = models.ForeignKey(
-        Ward, on_delete=models.CASCADE, db_column="uniqueid", blank=True, null=True)
-    '''
+        Ward, on_delete=models.CASCADE, db_column="ward_uniqueid", blank=True, null=True)
     polling_unit_number = models.CharField(
         max_length=50, blank=True, null=True)
     polling_unit_name = models.CharField(max_length=50, blank=True, null=True)
@@ -102,7 +100,7 @@ class Agentname(models.Model):
     email = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=13)
     pollingunit_uniqueid = models.ForeignKey(
-        PollingUnit, on_delete=models.CASCADE, db_column="uniqueid")
+        PollingUnit, on_delete=models.CASCADE, db_column="pollinguniqueid")
 
     class Meta:
         managed = False
