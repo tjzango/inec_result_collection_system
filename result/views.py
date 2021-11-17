@@ -21,13 +21,13 @@ class BasePage(View):
         context = {
 
         }
-        if key:
-            data = PollingUnit.objects.filter(uniqueid=key)
-            context["lga_results"] = data
-            
-        context['polling_units_relults'] = AnnouncedPuResults.objects.all(),
         context['lgas'] = Lga.objects.all()
+        if key != "":
+            data = PollingUnit.objects.filter(uniqueid=key)
+            context["lga_results"] = data        
+            return render(request,"lga.html", context)
         
+        context['polling_units_relults'] = AnnouncedPuResults.objects.all(),
         return render(request,"lga.html", context)
 
     

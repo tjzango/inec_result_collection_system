@@ -10,7 +10,7 @@
                     <form method="get">{% csrf_token %}
                         <select name="lg" id="lga">    
                             {% for lga in lgas %}
-                                <option value="{{ lga.lga_name }}" id="lga">{{ lga.lga_name }}</option>
+                                <option value="{{ selected_lga }}" id="lga">{{ lga.lga_name }}</option>
                             {% endfor %}
                         </select>
                         <button type="submit">Select</button>
