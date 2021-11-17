@@ -17,7 +17,7 @@ from .models import (
 class BasePage(View):
     
     def get(self, request, **kwarg):
-        key = request.GET.get('lga')
+        key = request.GET.get('lg')
         context = {
 
         }
