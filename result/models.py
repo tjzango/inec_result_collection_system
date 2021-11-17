@@ -70,7 +70,8 @@ class Ward(models.Model):
 class PollingUnit(models.Model):
     pollinguniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
-    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="ward_id", related_name="ward_non_default_id")
+    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE,
+                                db_column="ward_id", related_name="ward_non_default_id")
     lga_id = models.ForeignKey(
         Lga, on_delete=models.CASCADE, db_column="lga_uniqueid")
     uniquewardid = models.ForeignKey(
@@ -129,7 +130,8 @@ class AnnouncedLgaResults(models.Model):
 
 class AnnouncedPuResults(models.Model):
     result_id = models.AutoField(primary_key=True)
-    polling_unit_uniqueid = models.ForeignKey(PollingUnit, on_delete=models.CASCADE, db_column="pollinguniqueid") #CharField(max_length=50)
+    polling_unit_uniqueid = models.ForeignKey(
+        PollingUnit, on_delete=models.CASCADE, db_column="pollinguniqueid")  # CharField(max_length=50)
     party_abbreviation = models.CharField(max_length=4)
     party_score = models.IntegerField()
     entered_by_user = models.CharField(max_length=50)
