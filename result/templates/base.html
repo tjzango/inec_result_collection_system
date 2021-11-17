@@ -97,60 +97,7 @@
             <hr style="width:50px;border:5px solid green" class="w3-round">
         </div>
 
-        <!-- Photo grid (modal) -->
-
-        <div class="w3-row-padding" style="overflow-x:auto;">
-            <table>
-                <tr>
-                    <td>Polling Unit Name</td>
-                    <td>Party</td>
-                    <td>Score</td>
-                    <td>Entered By</td>
-                    <td>Date</td>
-                    <td>User IP Address</td>
-                </tr>
-                {% for polling_units_relult in polling_units_relults %}
-                    <tr>
-                        <td>{{ polling_units_relult.polling_unit_name }}</td>
-                        <td>{{ polling_units_relult.party_abbreviation }}</td>
-                        <td>{{ polling_units_relult.party_score }}</td>
-                        <td>{% if polling_units_relult.entered_by_user == '' %}
-                            Unknown User
-                            {% else %}
-                            {{ polling_units_relult.entered_by_user }}
-                            {% endif %}
-                            </td>
-                        <td>{{ polling_units_relult.date_entered }}</td>
-                        <td>{{ polling_units_relult.user_ip_address }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-
-        <!-- Modal for full size images on click-->
-        <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-            <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
-            <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-                <img id="img01" class="w3-image">
-                <p id="caption"></p>
-            </div>
-        </div>
-
-        <!-- Services -->
-        <div class="w3-container" id="services" style="margin-top:75px">
-            <h1 class="w3-xxxlarge w3-text-green"><b>Local Government Result</b></h1>
-            <hr style="width:50px;border:5px solid green" class="w3-round">
-            <p>
-                <label for="cars">Select LGA:</label>
-
-                <select name="lg-results" id="lga">
-                    {% for lga in lgas %}
-                        <option value="lga">{{ lga }}</option>
-                    {% endfor %}
-                </select>
-            </p>
-        </div>
+       
 
         <!-- Designers -->
         <div class="w3-container" id="designers" style="margin-top:75px">

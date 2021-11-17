@@ -17,8 +17,19 @@ from .models import (
 class BasePage(View):
     
     def get(self, request, **kwarg):
+        key = request.GET.get('lga')
         context = {
+
+        }
+        if key:
+            data = PollingUnit.objects.filter(uniqueid=key)
+            context += {
+                "lga-results": data
+            }
+        context += {
             'polling_units_relults': AnnouncedPuResults.objects.all(),
             'lgas': Lga.objects.all()
         }
-        return render(request,"home.html", context)
+        return render(request,"lga.html", context)
+
+    

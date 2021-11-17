@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+ <div class="w3-container" id="services" style="margin-top:75px">
+            <h1 class="w3-xxxlarge w3-text-green"><b>Local Government Result</b></h1>
+            <hr style="width:50px;border:5px solid green" class="w3-round">
+            <p>
+                <label for="cars">Select LGA:</label>
+
+                <select name="lg-results" id="lga">
+                    <form method="get">{% csrf_token %}
+                        {% for lga in lgas %}
+                            <option value="lga" id="lga">{{ lga.lga_name }}</option>
+                        {% endfor %}
+                        <button type="submit">Select</button>
+                    </form>
+                </select>
+
+                
+            </p>
+            <div class="w3-row-padding" style="overflow-x:auto;">
+            <table>
+                <tr>
+                    <td>Polling Unit Name</td>
+                    <td>Party</td>
+                    <td>Score</td>
+                    <td>Entered By</td>
+                    <td>Date</td>
+                    <td>User IP Address</td>
+                </tr>
+                {% for lga-results in lga-resultss %}
+                    <tr>
+                        <td>{{ lga-results.polling_unit_name }}</td>
+                        <td>{{ lga-results.party_abbreviation }}</td>
+                        <td>{{ lga-results.party_score }}</td>
+                        <td>{% if lga-results.entered_by_user == '' %}
+                            Unknown User
+                            {% else %}
+                            {{ lga-results.entered_by_user }}
+                            {% endif %}
+                            </td>
+                        <td>{{ lga-results.date_entered }}</td>
+                        <td>{{ lga-results.user_ip_address }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </div>
+    {% endblock content %}
