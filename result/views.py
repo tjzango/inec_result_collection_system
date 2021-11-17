@@ -23,7 +23,7 @@ class BasePage(View):
         }
         context['lgas'] = Lga.objects.all()
         if key != "":
-            data = AnnouncedPuResults.objects.filter(uniqueid=key)
+            data = AnnouncedPuResults.objects.filter(polling_unit_uniqueid=key)
             context["lga_results"] = data        
             return render(request,"lga.html", context)
         
