@@ -105,21 +105,6 @@ class AnnouncedWardResults(models.Model):
         db_table = 'announced_ward_results'
 
 
-class Lga(models.Model):
-    uniqueid = models.AutoField(primary_key=True)
-    lga_id = models.IntegerField()
-    lga_name = models.CharField(max_length=50)
-    state_id = models.IntegerField()
-    lga_description = models.TextField(blank=True, null=True)
-    entered_by_user = models.CharField(max_length=50)
-    date_entered = models.DateTimeField()
-    user_ip_address = models.CharField(max_length=50)
-
-    class Meta:
-        managed = False
-        db_table = 'lga'
-
-
 class Party(models.Model):
     partyid = models.CharField(max_length=11)
     partyname = models.CharField(max_length=11)
@@ -136,6 +121,22 @@ class States(models.Model):
     class Meta:
         managed = False
         db_table = 'states'
+
+
+class Lga(models.Model):
+    uniqueid = models.AutoField(primary_key=True)
+    lga_id = models.IntegerField()
+    lga_name = models.CharField(max_length=50)
+    state_id = models.ForeignKey(
+        States, on_delete=models.CASCADE, db_column="state_id")  # IntegerField()
+    lga_description = models.TextField(blank=True, null=True)
+    entered_by_user = models.CharField(max_length=50)
+    date_entered = models.DateTimeField()
+    user_ip_address = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'lga'
 
 
 class Ward(models.Model):

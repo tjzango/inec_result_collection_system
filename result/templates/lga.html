@@ -22,18 +22,18 @@
             <div class="w3-row-padding" style="overflow-x:auto;">
             <table>
                 <tr>
-                    <td>Polling Unit Name</td>
-                    <td>Party</td>
-                    <td>Score</td>
+                    <td>ID</td>
+                    <td>LGA Name</td>
+                    <td>State</td>
                     <td>Entered By</td>
                     <td>Date</td>
                     <td>User IP Address</td>
                 </tr>
                 {% for lga in lga_results %}
                     <tr>
-                        <td>{{ lga.polling_unit_name }}</td>
-                        <td>{{ lga.party_abbreviation }}</td>
-                        <td>{{ lga.party_score }}</td>
+                        <td>{{ lga.uniqueid }}</td>
+                        <td>{{ lga.lga_name }}</td>
+                        <td>{{ lga.state }}</td>
                         <td>{% if lga.entered_by_user == '' %}
                             Unknown User
                             {% else %}
