@@ -7,8 +7,8 @@
                 <label for="cars">Select LGA:</label>
 
                 
-                    <form method="get">{% csrf_token %}
-                        <select name="lg" id="lga">    
+                    <form method="get">
+                        <select name="lg" id="lgas">    
                             {% for lga in lgas %}
                                 <option value="{{ selected_lga }}" id="lga">{{ lga.lga_name }}</option>
                             {% endfor %}
