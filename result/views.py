@@ -20,4 +20,4 @@ class BasePage(View):
         context = {
             'polling_units_relults': AnnouncedPuResults.objects.all()
         }
-        return render(request,"home.html")
+        return render(request,"home.html", context)
