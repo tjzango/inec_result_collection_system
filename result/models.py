@@ -71,7 +71,7 @@ class AnnouncedPuResults(models.Model):
         print (self.polling_unit_uniqueid)
         print (int(self.polling_unit_uniqueid))
         unit = PollingUnit.objects.filter(polling_unit_id=int(self.polling_unit_uniqueid)).first()
-        return unit
+        return unit.polling_unit_name
 class AnnouncedStateResults(models.Model):
     result_id = models.AutoField(primary_key=True)
     state_name = models.CharField(max_length=50)
