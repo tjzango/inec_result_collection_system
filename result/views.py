@@ -18,6 +18,6 @@ class BasePage(View):
     
     def get(self, request, **kwarg):
         context = {
-            'polling_units': AnnouncedPuResults.objects.all()
+            'polling_units_relults': AnnouncedPuResults.objects.all()
         }
         return render(request,"home.html")
