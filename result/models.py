@@ -56,7 +56,7 @@ class PollingUnit(models.Model):
 
 class AnnouncedPuResults(models.Model):
     result_id = models.AutoField(primary_key=True)
-    polling_unit_uniqueid = models.CharField(max_length=500)# ForeignKey(PollingUnit, on_delete=models.CASCADE, db_column="uniqueid")
+    polling_unit_uniqueid = models.CharField(max_length=500) # ForeignKey(PollingUnit, on_delete=models.CASCADE, db_column="uniqueid")
     party_abbreviation = models.CharField(max_length=4)
     party_score = models.IntegerField()
     entered_by_user = models.CharField(max_length=50)
@@ -67,7 +67,9 @@ class AnnouncedPuResults(models.Model):
         managed = False
         db_table = 'announced_pu_results'
 
-
+    def polling_unit_name(self):
+        unit = PollingUnit.objects.get(polling_unit_id=int(self.polling_unit_uniqueid))
+        return unit.polling_unit_name
 class AnnouncedStateResults(models.Model):
     result_id = models.AutoField(primary_key=True)
     state_name = models.CharField(max_length=50)
