@@ -23,7 +23,7 @@
             <table>
                 <tr>
                     <td>ID</td>
-                    <td>LGA Name</td>
+                    <td>Party</td>
                     <td>State</td>
                     <td>Entered By</td>
                     <td>Date</td>
@@ -32,7 +32,7 @@
                 {% for lga in lga_results %}
                     <tr>
                         <td>{{ lga.uniqueid }}</td>
-                        <td>{{ lga.lga_name }}</td>
+                        <td>{{ lga.party_abbreviation }}</td>
                         <td>{{ lga.state_id }}</td>
                         <td>{% if lga.entered_by_user == '' %}
                             Unknown User
