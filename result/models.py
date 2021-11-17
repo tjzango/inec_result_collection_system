@@ -76,7 +76,8 @@ class PollingUnit(models.Model):
         Lga, on_delete=models.CASCADE, db_column="uniqueid")
     uniquewardid = models.ForeignKey(
         Ward, on_delete=models.CASCADE, db_column="uniqueid", blank=True, null=True)
-    '''polling_unit_number = models.CharField(
+    '''
+    polling_unit_number = models.CharField(
         max_length=50, blank=True, null=True)
     polling_unit_name = models.CharField(max_length=50, blank=True, null=True)
     polling_unit_description = models.TextField(blank=True, null=True)
