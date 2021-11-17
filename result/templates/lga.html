@@ -6,7 +6,7 @@
             <p>
                 <label for="cars">Select LGA:</label>
 
-                <select name="lg-results" id="lga">
+                <select name="lg" id="lga">
                     <form method="get">{% csrf_token %}
                         {% for lga in lgas %}
                             <option value="lga" id="lga">{{ lga.lga_name }}</option>
@@ -27,19 +27,19 @@
                     <td>Date</td>
                     <td>User IP Address</td>
                 </tr>
-                {% for lga-results in lga-resultss %}
+                {% for lga in lgas %}
                     <tr>
-                        <td>{{ lga-results.polling_unit_name }}</td>
-                        <td>{{ lga-results.party_abbreviation }}</td>
-                        <td>{{ lga-results.party_score }}</td>
-                        <td>{% if lga-results.entered_by_user == '' %}
+                        <td>{{ lga.polling_unit_name }}</td>
+                        <td>{{ lga.party_abbreviation }}</td>
+                        <td>{{ lga.party_score }}</td>
+                        <td>{% if lga.entered_by_user == '' %}
                             Unknown User
                             {% else %}
-                            {{ lga-results.entered_by_user }}
+                            {{ lga.entered_by_user }}
                             {% endif %}
                             </td>
-                        <td>{{ lga-results.date_entered }}</td>
-                        <td>{{ lga-results.user_ip_address }}</td>
+                        <td>{{ lga.date_entered }}</td>
+                        <td>{{ lga.user_ip_address }}</td>
                     </tr>
                 {% endfor %}
             </table>
