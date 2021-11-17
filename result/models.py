@@ -73,7 +73,7 @@ class AnnouncedPuResults(models.Model):
 
     def polling_unit_name(self):
         unit = PollingUnit.objects.filter(
-            unique=int(self.polling_unit_uniqueid)).first()
+            uniqueid=int(self.polling_unit_uniqueid)).first()
         return unit.polling_unit_name
 
 
