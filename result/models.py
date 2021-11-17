@@ -21,7 +21,8 @@ class Lga(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     lga_id = models.IntegerField()
     lga_name = models.CharField(max_length=50)
-    state_id = models.ForeignKey(States, on_delete=models.CASCADE, db_column="state_id")
+    state_id = models.ForeignKey(
+        States, on_delete=models.CASCADE, db_column="state_id")
     lga_description = models.TextField(blank=True, null=True)
     entered_by_user = models.CharField(max_length=50)
     date_entered = models.DateTimeField()
@@ -32,7 +33,7 @@ class Lga(models.Model):
         db_table = 'lga'
 
     def __str__(self):
-        return self.lga_name
+        return "{} | {}".format(self.uniqueid, self.lga_id)
 
 
 class Party(models.Model):
@@ -51,7 +52,8 @@ class Ward(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
-    lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE, db_column="lga_id")
+    lga_id = models.ForeignKey(
+        Lga, on_delete=models.CASCADE, db_column="lga_id")
     ward_description = models.TextField(blank=True, null=True)
     entered_by_user = models.CharField(max_length=50)
     date_entered = models.DateTimeField()
@@ -68,9 +70,12 @@ class Ward(models.Model):
 class PollingUnit(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
-    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="ward_id", related_name="tokyo")
-    lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE, db_column="lga_id")
-    uniquewardid = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="uniquewardid", blank=True, null=True)
+    ward_id = models.ForeignKey(
+        Ward, on_delete=models.CASCADE, db_column="ward_id", related_name="tokyo")
+    lga_id = models.ForeignKey(
+        Lga, on_delete=models.CASCADE, db_column="lga_id")
+    uniquewardid = models.ForeignKey(
+        Ward, on_delete=models.CASCADE, db_column="uniquewardid", blank=True, null=True)
     polling_unit_number = models.CharField(
         max_length=50, blank=True, null=True)
     polling_unit_name = models.CharField(max_length=50, blank=True, null=True)
@@ -84,9 +89,10 @@ class PollingUnit(models.Model):
     class Meta:
         managed = False
         db_table = 'polling_unit'
-    
+
     def __str__(self) -> str:
         return "{}:{}".format(self.uniqueid, self.polling_unit_id)
+
 
 class Agentname(models.Model):
     name_id = models.AutoField(primary_key=True)
@@ -117,8 +123,10 @@ class AnnouncedLgaResults(models.Model):
     class Meta:
         managed = False
         db_table = 'announced_lga_results'
+
     def __str__(self):
         return "{} - {} - {}".format(self.lga_name, self.party_abbreviation, self.party_score)
+
 
 class AnnouncedPuResults(models.Model):
     result_id = models.AutoField(primary_key=True)
