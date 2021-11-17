@@ -10,7 +10,7 @@
                     <form method="get">{% csrf_token %}
                         <select name="lg" id="lga">    
                             {% for lga in lgas %}
-                                <option value="lga" id="lga">{{ lga.lga_name }}</option>
+                                <option value="{{ lga.lga_name }}" id="lga">{{ lga.lga_name }}</option>
                             {% endfor %}
                         </select>
                         <button type="submit">Select</button>
@@ -29,7 +29,7 @@
                     <td>Date</td>
                     <td>User IP Address</td>
                 </tr>
-                {% for lga in lgas %}
+                {% for lga in lga-results %}
                     <tr>
                         <td>{{ lga.polling_unit_name }}</td>
                         <td>{{ lga.party_abbreviation }}</td>
