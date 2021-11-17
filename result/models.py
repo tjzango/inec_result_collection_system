@@ -18,7 +18,7 @@ class States(models.Model):
 
 
 class Lga(models.Model):
-    uniqueid = models.AutoField(primary_key=True)
+    lga_uniqueid = models.AutoField(primary_key=True)
     lga_id = models.IntegerField()
     lga_name = models.CharField(max_length=50)
     state_id = models.ForeignKey(
@@ -53,7 +53,7 @@ class Ward(models.Model):
     ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
     lga_id = models.ForeignKey(
-        Lga, on_delete=models.CASCADE, db_column="uniqueid")
+        Lga, on_delete=models.CASCADE, db_column="lga_uniqueid")
     ward_description = models.TextField(blank=True, null=True)
     entered_by_user = models.CharField(max_length=50)
     date_entered = models.DateTimeField()
