@@ -18,7 +18,7 @@ class States(models.Model):
 
 
 class Lga(models.Model):
-    lga_uniqueid = models.AutoField(primary_key=True)
+    uniqueid = models.AutoField(primary_key=True)
     lga_id = models.IntegerField()
     lga_name = models.CharField(max_length=50)
     state_id = models.ForeignKey(
@@ -49,11 +49,11 @@ class Party(models.Model):
 
 
 class Ward(models.Model):
-    ward_uniqueid = models.AutoField(primary_key=True)
+    uniqueid = models.AutoField(primary_key=True)
     ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
     lga_id = models.ForeignKey(
-        Lga, on_delete=models.CASCADE, db_column="lga_uniqueid")
+        Lga, on_delete=models.CASCADE, db_column="uniqueid")
     ward_description = models.TextField(blank=True, null=True)
     entered_by_user = models.CharField(max_length=50)
     date_entered = models.DateTimeField()
@@ -68,13 +68,14 @@ class Ward(models.Model):
 
 
 class PollingUnit(models.Model):
-    pollinguniqueid = models.AutoField(primary_key=True)
+    uniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
-    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="ward_id", related_name="ward_non_default_id")
+    ward_id = models.ForeignKey(
+        Ward, on_delete=models.CASCADE, db_column="uniqueid", related_name="tokyo")
     lga_id = models.ForeignKey(
-        Lga, on_delete=models.CASCADE, db_column="lga_uniqueid")
+        Lga, on_delete=models.CASCADE, db_column="uniqueid")
     uniquewardid = models.ForeignKey(
-        Ward, on_delete=models.CASCADE, db_column="ward_uniqueid", blank=True, null=True)
+        Ward, on_delete=models.CASCADE, db_column="uniqueid", blank=True, null=True)
     polling_unit_number = models.CharField(
         max_length=50, blank=True, null=True)
     polling_unit_name = models.CharField(max_length=50, blank=True, null=True)
@@ -100,7 +101,7 @@ class Agentname(models.Model):
     email = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=13)
     pollingunit_uniqueid = models.ForeignKey(
-        PollingUnit, on_delete=models.CASCADE, db_column="pollinguniqueid")
+        PollingUnit, on_delete=models.CASCADE, db_column="uniqueid")
 
     class Meta:
         managed = False
@@ -141,8 +142,7 @@ class AnnouncedPuResults(models.Model):
         db_table = 'announced_pu_results'
 
     def __str__(self) -> str:
-        return "{} | {}".format(self.polling_unit_uniqueid)
-
+        return "{} | {}".format(self)
 
 class AnnouncedStateResults(models.Model):
     result_id = models.AutoField(primary_key=True)
