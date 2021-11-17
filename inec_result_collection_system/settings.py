@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'result',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +73,7 @@ WSGI_APPLICATION = 'inec_result_collection_system.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -80,7 +81,27 @@ DATABASES = {
     }
 }
 
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'google.appengine.ext.django.backends.rdbms',
+        'NAME': 'my_django_db',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': '34.134.91.207',
+        'PORT': 5432,
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'DB_NAME',
+        'USER': 'DB_USER',
+        'PASSWORD': 'DB_PASSWORD',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
