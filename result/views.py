@@ -18,6 +18,7 @@ class BasePage(View):
     
     def get(self, request, **kwarg):
         context = {
-            'polling_units_relults': AnnouncedPuResults.objects.all()
+            'polling_units_relults': AnnouncedPuResults.objects.all(),
+            'lgas': Lga.objects.all()
         }
         return render(request,"home.html", context)
