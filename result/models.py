@@ -51,7 +51,7 @@ class Ward(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
-    lga_id = models.models.ForeignKey(Lga, on_delete=models.CASCADE)
+    lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE)
     ward_description = models.TextField(blank=True, null=True)
     entered_by_user = models.CharField(max_length=50)
     date_entered = models.DateTimeField()
