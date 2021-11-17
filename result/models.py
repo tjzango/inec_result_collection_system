@@ -92,7 +92,7 @@ class Agentname(models.Model):
     lastname = models.CharField(max_length=255)
     email = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=13)
-    pollingunit_uniqueid = models.models.ForeignKey(
+    pollingunit_uniqueid = models.ForeignKey(
         PollingUnit, on_delete=models.CASCADE)
 
     class Meta:
