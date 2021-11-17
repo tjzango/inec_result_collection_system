@@ -34,13 +34,15 @@ class AnnouncedLgaResults(models.Model):
         managed = False
         db_table = 'announced_lga_results'
 
+
 class PollingUnit(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
     ward_id = models.IntegerField()
     lga_id = models.IntegerField()
     uniquewardid = models.IntegerField(blank=True, null=True)
-    polling_unit_number = models.CharField(max_length=50, blank=True, null=True)
+    polling_unit_number = models.CharField(
+        max_length=50, blank=True, null=True)
     polling_unit_name = models.CharField(max_length=50, blank=True, null=True)
     polling_unit_description = models.TextField(blank=True, null=True)
     lat = models.CharField(max_length=255, blank=True, null=True)
@@ -56,7 +58,8 @@ class PollingUnit(models.Model):
 
 class AnnouncedPuResults(models.Model):
     result_id = models.AutoField(primary_key=True)
-    polling_unit_uniqueid = models.ForeignKey(PollingUnit, on_delete=models.CASCADE, db_column="uniqueid")
+    polling_unit_uniqueid = models.ForeignKey(
+        PollingUnit, on_delete=models.CASCADE, db_column="polling_unit_id")
     party_abbreviation = models.CharField(max_length=4)
     party_score = models.IntegerField()
     entered_by_user = models.CharField(max_length=50)
@@ -118,8 +121,6 @@ class Party(models.Model):
     class Meta:
         managed = False
         db_table = 'party'
-
-
 
 
 class States(models.Model):
