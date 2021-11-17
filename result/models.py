@@ -51,7 +51,7 @@ class Ward(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
-    lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE)
+    lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE, db_column="lga_id")
     ward_description = models.TextField(blank=True, null=True)
     entered_by_user = models.CharField(max_length=50)
     date_entered = models.DateTimeField()
@@ -68,8 +68,8 @@ class Ward(models.Model):
 class PollingUnit(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
-    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE)
-    lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE)
+    ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="polling_unit_id")
+    lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE, db_column="lga_id")
     uniquewardid = models.IntegerField(blank=True, null=True)
     polling_unit_number = models.CharField(
         max_length=50, blank=True, null=True)
