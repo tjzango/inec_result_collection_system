@@ -52,8 +52,8 @@ class Ward(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
-    #lga_id = models.ForeignKey(
-    #    Lga, on_delete=models.CASCADE, db_column="uniqueid")
+    lga_id = models.ForeignKey(
+        Lga, on_delete=models.CASCADE, db_column="uniqueid")
     ward_description = models.TextField(blank=True, null=True)
     entered_by_user = models.CharField(max_length=50)
     date_entered = models.DateTimeField()
@@ -144,6 +144,7 @@ class AnnouncedPuResults(models.Model):
 
     def __str__(self) -> str:
         return "{} | {}".format(self.polling_unit_uniqueid)
+
 
 class AnnouncedStateResults(models.Model):
     result_id = models.AutoField(primary_key=True)
