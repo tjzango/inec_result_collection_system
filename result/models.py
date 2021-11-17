@@ -33,7 +33,7 @@ class Lga(models.Model):
         db_table = 'lga'
 
     def __str__(self):
-        return "{} | {}".format(self.uniqueid, self.lga_id)
+        return "{} | {}".format(self.uniqueid, self.lga_name)
 
 
 class Party(models.Model):
@@ -45,7 +45,7 @@ class Party(models.Model):
         db_table = 'party'
 
     def __str__(self):
-        return self.partyname
+        return "{} | {}".format(self.partyid, self.partyname)
 
 
 class Ward(models.Model):
@@ -53,7 +53,7 @@ class Ward(models.Model):
     ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
     lga_id = models.ForeignKey(
-        Lga, on_delete=models.CASCADE, db_column="lga_id")
+        Lga, on_delete=models.CASCADE, db_column="uniqueid")
     ward_description = models.TextField(blank=True, null=True)
     entered_by_user = models.CharField(max_length=50)
     date_entered = models.DateTimeField()
@@ -71,11 +71,11 @@ class PollingUnit(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
     ward_id = models.ForeignKey(
-        Ward, on_delete=models.CASCADE, db_column="ward_id", related_name="tokyo")
+        Ward, on_delete=models.CASCADE, db_column="uniqueid", related_name="tokyo")
     lga_id = models.ForeignKey(
-        Lga, on_delete=models.CASCADE, db_column="lga_id")
+        Lga, on_delete=models.CASCADE, db_column="uniqueid")
     uniquewardid = models.ForeignKey(
-        Ward, on_delete=models.CASCADE, db_column="uniquewardid", blank=True, null=True)
+        Ward, on_delete=models.CASCADE, db_column="uniqueid", blank=True, null=True)
     polling_unit_number = models.CharField(
         max_length=50, blank=True, null=True)
     polling_unit_name = models.CharField(max_length=50, blank=True, null=True)
@@ -101,7 +101,7 @@ class Agentname(models.Model):
     email = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=13)
     pollingunit_uniqueid = models.ForeignKey(
-        PollingUnit, on_delete=models.CASCADE)
+        PollingUnit, on_delete=models.CASCADE, db_column="uniqueid")
 
     class Meta:
         managed = False
@@ -141,6 +141,8 @@ class AnnouncedPuResults(models.Model):
         managed = False
         db_table = 'announced_pu_results'
 
+    def __str__(self) -> str:
+        return "{} | {}".format(self.polling_unit_uniqueid)
 
 class AnnouncedStateResults(models.Model):
     result_id = models.AutoField(primary_key=True)
