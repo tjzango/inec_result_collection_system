@@ -70,7 +70,7 @@ class PollingUnit(models.Model):
     polling_unit_id = models.IntegerField()
     ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="ward_id")
     lga_id = models.ForeignKey(Lga, on_delete=models.CASCADE, db_column="lga_id")
-    uniquewardid = models.IntegerField(blank=True, null=True)
+    uniquewardid = models.ForeignKey(Ward, on_delete=models.CASCADE, db_column="uniquewardid", blank=True, null=True)
     polling_unit_number = models.CharField(
         max_length=50, blank=True, null=True)
     polling_unit_name = models.CharField(max_length=50, blank=True, null=True)
@@ -85,6 +85,8 @@ class PollingUnit(models.Model):
         managed = False
         db_table = 'polling_unit'
     
+    def __str__(self) -> str:
+        return "{}:{} [{}({}) - {}]".format(self.uniqueid, self.polling_unit_id, self.ward_id.ward_name, self.lga_id, self.uniqueid)
 
 class Agentname(models.Model):
     name_id = models.AutoField(primary_key=True)
