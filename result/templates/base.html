@@ -103,26 +103,22 @@
             <table>
                 <tr>
                     <td>Polling Unit Name</td>
+                    <td>Party</td>
+                    <td>Total Votes Casted</td>
+                    <td>Score</td>
+                    <td>Entered By</td>
+                    <td>Date</td>
+                    <td>User IP Address</td>
+                </tr>
+                {% for polling_units_relult in polling_units_relults %}
                     <tr>
+                        <td>Polling Unit Name</td>
                         <td>Party</td>
                         <td>Total Votes Casted</td>
                         <td>Score</td>
                         <td>Entered By</td>
                         <td>Date</td>
                         <td>User IP Address</td>
-                    </tr>
-                </tr>
-                {% for polling_units_relult in polling_units_relults %}
-                    <tr>
-                        <td>Polling Unit Name</td>
-                        <tr>
-                            <td>Party</td>
-                            <td>Total Votes Casted</td>
-                            <td>Score</td>
-                            <td>Entered By</td>
-                            <td>Date</td>
-                            <td>User IP Address</td>
-                        </tr>
                     </tr>
                 {% endfor %}
             </table>
