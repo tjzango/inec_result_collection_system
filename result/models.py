@@ -86,7 +86,7 @@ class PollingUnit(models.Model):
         db_table = 'polling_unit'
     
     def __str__(self) -> str:
-        return "{}:{} [{}({}) - {}]".format(self.uniqueid, self.polling_unit_id, self.ward_id.ward_name, self.lga_id, self.uniqueid)
+        return "{}:{}".format(self.uniqueid, self.polling_unit_id)
 
 class Agentname(models.Model):
     name_id = models.AutoField(primary_key=True)
