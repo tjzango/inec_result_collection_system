@@ -59,7 +59,7 @@ class PollingUnit(models.Model):
 class AnnouncedPuResults(models.Model):
     result_id = models.AutoField(primary_key=True)
     polling_unit_uniqueid = models.ForeignKey(
-        PollingUnit, db_column="uniqueid", on_delete=models.CASCADE)
+        PollingUnit, on_delete=models.CASCADE)
     party_abbreviation = models.CharField(max_length=4)
     party_score = models.IntegerField()
     entered_by_user = models.CharField(max_length=50)
