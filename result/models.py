@@ -70,7 +70,7 @@ class Ward(models.Model):
 class PollingUnit(models.Model):
     uniqueid = models.AutoField(primary_key=True)
     polling_unit_id = models.IntegerField()
-    ward_id = models.IntegerField())
+    ward_id = models.IntegerField()
     lga_id = models.ForeignKey(
         Lga, on_delete=models.CASCADE, db_column="uniqueid")
     uniquewardid = models.ForeignKey(
