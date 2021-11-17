@@ -1,5 +1,5 @@
 from django.contrib import admin
-'''from .models import (
+from .models import (
     Lga,
     States,
     Party,
@@ -23,4 +23,3 @@ admin.site.register(AnnouncedLgaResults)
 admin.site.register(Agentname)
 admin.site.register(AnnouncedPuResults)
 admin.site.register(AnnouncedWardResults)
-'''
