@@ -6,14 +6,16 @@
             <p>
                 <label for="cars">Select LGA:</label>
 
-                <select name="lg" id="lga">
+                
                     <form method="get">{% csrf_token %}
-                        {% for lga in lgas %}
-                            <option value="lga" id="lga">{{ lga.lga_name }}</option>
-                        {% endfor %}
+                        <select name="lg" id="lga">    
+                            {% for lga in lgas %}
+                                <option value="lga" id="lga">{{ lga.lga_name }}</option>
+                            {% endfor %}
+                        </select>
                         <button type="submit">Select</button>
                     </form>
-                </select>
+                
 
                 
             </p>
