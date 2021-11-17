@@ -68,7 +68,7 @@ class AnnouncedPuResults(models.Model):
         db_table = 'announced_pu_results'
 
     def polling_unit_name(self):
-        unit = PollingUnit.objects.get(polling_unit_id=int(self.polling_unit_uniqueid))
+        unit = PollingUnit.objects.first(polling_unit_id=int(self.polling_unit_uniqueid))
         return unit.polling_unit_name
 class AnnouncedStateResults(models.Model):
     result_id = models.AutoField(primary_key=True)
