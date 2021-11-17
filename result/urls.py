@@ -3,5 +3,5 @@ from .views import BasePage
 
 
 urlpatterns = [
-    path('', BasePage, name='base'),
+    path('', BasePage.as_view(), name='base'),
 ]
