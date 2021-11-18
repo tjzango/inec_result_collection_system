@@ -16,6 +16,8 @@ from .models import (
 from django.contrib import messages
 from .forms import UserLoginForm, PollingForm
 # Create your views here.
+
+
 class BasePageView(View):
     
     def get(self, request, **kwarg):
@@ -35,11 +37,11 @@ class BasePageView(View):
                 print (phone)
                 user = Agentname.objects.get(email=email, phone=phone)
                 if user:
-                    login(request, user)
+                    request.session['is_actove'] = True
                     return redirect('store-results')
             except Exception as e:
                 messages.error(
-                    request, 'Email phone/number does not match {}'.format(e))
+                    request, 'Email phone/number does not match {}')
         return redirect('base')
 
 
