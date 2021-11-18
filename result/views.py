@@ -62,23 +62,22 @@ class LgaResultsView(View):
         
         return render(request,"lga.html", context)
 
+   
     def post(self, request):
         form = UserLoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data["email"]
             phone = form.cleaned_data['phone']
             try:
+                print (phone)
                 user = Agentname.objects.get(email=email, phone=phone)
-                if user:
-                    request.session['polling_unit'] = user.pollingunit_uniqueid
-                    request.session['user_email'] = user.email
-                    
-                    login(request, user)
-                    return redirect('store-results')
+                if user.email == email and user.phone==phone:
+                    request.session['is_active'] = True
+                    return redirect('store-result')
             except Exception as e:
                 messages.error(
-                    request, 'Email phone number does not match'.format())
-        return redirect('lga-result')
+                    request, 'Email phone/number does not match')
+        return redirect('base')
 
 class StoreResultsView(View):
     
