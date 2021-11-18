@@ -14,12 +14,12 @@
             <form  method="post"> {% csrf_token %}
                 <div class="w3-section">
                     <label>Party</label>
-                    {% render_field polling_form.party class="w3-input w3-border" requigreen %}
+                    {% render_field polling_form.party class="w3-input w3-border"  %}
                     
                 </div>
                 <div class="w3-section">
                     <label>Score</label>
-                    {% render_field polling_form.party_score class="w3-input w3-border" requigreen %}
+                    {% render_field polling_form.party_score class="w3-input w3-border" %}
                 </div>
 
                 <button type="submit"
