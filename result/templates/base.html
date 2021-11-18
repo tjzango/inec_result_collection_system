@@ -91,6 +91,13 @@
     <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
         <!-- Header -->
+         {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
        {% block content %}
        {% endblock content %}
 
@@ -119,8 +126,27 @@
 
         <!-- End page Login -->
     </div>
-    <div class="w3-row-padding" style="overflow-x:auto;">
-        <table>
+<div class="w3-container" id="services" style="margin-top:75px">
+            <h1 class="w3-xxxlarge w3-text-green"><b>Local Government Result</b></h1>
+            <hr style="width:50px;border:5px solid green" class="w3-round">
+            <p>
+                <label for="cars">Select LGA:</label>
+
+                
+                    <form method="get">
+                        <select name="lg" id="lgas">    
+                            {% for lga in lgas %}
+                                <option value="{{ lga.uniqueid }}" id="lga">{{ lga.lga_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">Select</button>
+                    </form>
+                
+
+                
+            </p>
+            <div class="w3-row-padding" style="overflow-x:auto;">
+                    <table>
                 <tr>
                     <td>ID</td>
                     <td>Name</td>
@@ -140,6 +166,9 @@
                 {% endfor %}
             </table>
         </table>
+        </div>
+        </div>
+
     <script>
         // Script to open and close sidebar
         function w3_open() {
