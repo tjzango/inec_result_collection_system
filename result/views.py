@@ -32,6 +32,7 @@ class BasePageView(View):
             email = form.cleaned_data["email"]
             phone = form.cleaned_data['phone']
             try:
+                print (phone)
                 user = Agentname.objects.get(email=email, phone=phone)
                 if user:
                     login(request, user)
