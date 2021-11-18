@@ -91,8 +91,8 @@ class StoreResultsView(View):
                 'polling_form': PollingForm() 
             }
         
-        return render(request,"store_result.html", context)
+            return render(request,"store_result.html", context)
 
-
-
-
+def logout(request):
+    request.session['is_active'] = False
+    return redirect('base')

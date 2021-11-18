@@ -73,7 +73,9 @@
             <a href="{% url 'lga-result' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Local Government
                 Results</a>
             {% if request.session.is_active == true %}<a href="{% url 'store-result' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Store Results</a>{% endif %}
-            <a href="#lofin" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
+            {% if request.session.is_active == true %}<a href="#login" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
+            {% else %}<a href="{% url 'logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+            {% endif %}
         </div>
     </nav>
 
@@ -100,7 +102,7 @@
 
         <!-- Login -->
 
-        <div class="w3-container" id="lofin" style="margin-top:75px">
+        <div class="w3-container" id="login" style="margin-top:75px">
             <h1 class="w3-xxxlarge w3-text-green"><b>Login.</b></h1>
             <hr style="width:50px;border:5px solid green" class="w3-round">
             <p>Enter Your Email as password & Phone Number as Password?</p>
@@ -124,7 +126,7 @@
                     class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Login</button>
             </form>
         </div>
-        <div class="w3-container" id="lofin" style="margin-top:75px">
+        <div class="w3-container" id="login" style="margin-top:75px">
             <h1 class="w3-xxxlarge w3-text-green"><b>Users</b></h1>
                 <table>
                         <tr>
