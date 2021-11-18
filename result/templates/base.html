@@ -1,3 +1,4 @@
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <title>Nigeerian Voting Results</title>
@@ -71,7 +72,7 @@
                 Results</a>
             <a href="{% url 'lga-result' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Local Government
                 Results</a>
-            <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Store Results</a>
+            {% if request.usr.is_authenticated %}<a href="{% url 'store-results' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Store Results</a>{% else %}
             <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
         </div>
     </nav>
@@ -97,35 +98,47 @@
 
 
 
-        <!-- Contact -->
+        <!-- Login -->
         <div class="w3-container" id="contact" style="margin-top:75px">
             <h1 class="w3-xxxlarge w3-text-green"><b>Login.</b></h1>
             <hr style="width:50px;border:5px solid green" class="w3-round">
             <p>Enter Your Email as password & Phone Number as Password?</p>
-            <form action="/action_page.php" target="_blank">
+            <form  method="post"> {% csrf_token %}
                 <div class="w3-section">
-                    <label>Username</label>
-                    <input class="w3-input w3-border" placeholder="Email Address" type="text" name="Name" requigreen>
+                    <label>Email</label>
+                    {% render_field form.email class="w3-input w3-border" name="Name" requigreen %}%
                 </div>
                 <div class="w3-section">
-                    <label>Password</label>
-                    <input class="w3-input w3-border" placeholder="Your Phone number" type="text" name="Email"
-                        requigreen>
+                    <label>Phone Number</label>
+                    {% render_field form.phone class="w3-input w3-border" name="Name" requigreen %}
                 </div>
                 <button type="submit"
                     class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Login</button>
             </form>
         </div>
 
-        <!-- End page content -->
+        <!-- End page Login -->
     </div>
 
-    <!-- W3.CSS Container -->
-    <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px">
-        <p class="w3-right">Powegreen by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS"
-                target="_blank" class="w3-hover-opacity">w3.css</a></p>
-    </div>
-
+    <table>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Phone Number</td>
+                    <td>Polling Unit</td>
+                </tr>
+                {% for agent in agents %}
+                    <tr>
+                        <td>{{ agent.name_id }}</td>
+                        <td>{{ agent.firstname agent.lastname }}</td>
+                        <td>{{ agent.email }}</td>
+                        <td>{{ agent.phone }}</td>
+                        <td>{{ agent. }}</td>
+                        <td>{{ agent.pollingunit_uniqueid }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
     <script>
         // Script to open and close sidebar
         function w3_open() {

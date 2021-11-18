@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+         <div class="w3-container" style="margin-top:80px" id="showcase">
+            <h1 class="w3-xxxlarge w3-text-green"><b>Store Poling Unit Results</b></h1>
+            <hr style="width:50px;border:5px solid green" class="w3-round">
+        </div>
+        <div class="w3-container" id="contact" style="margin-top:75px">
+            <h1 class="w3-xxxlarge w3-text-green"><b>Your Poling Unit is {{polling.polling_unit_name }}</b></h1>
+            <hr style="width:50px;border:5px solid green" class="w3-round">
+            <p> </p>
+            <form  method="post"> {% csrf_token %}
+                <div class="w3-section">
+                    <label>Party</label>
+                    {% render_field polling_form.party class="w3-input w3-border" requigreen %}
+                    
+                </div>
+                <div class="w3-section">
+                    <label>Score</label>
+                    {% render_field polling_form.party_score class="w3-input w3-border" requigreen %}
+                </div>
+
+                <button type="submit"
+                    class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Store</button>
+            </form>
+        </div>
+
+
+        
+{% endblock content %}
