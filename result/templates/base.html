@@ -73,7 +73,7 @@
             <a href="{% url 'lga-result' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Local Government
                 Results</a>
             {% if request.session.is_active == true %}<a href="{% url 'store-result' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Store Results</a>{% endif %}
-            {% if request.session.is_active == true %}<a href="#login" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
+            {% if request.session.is_active != True %}<a href="#login" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Login</a>
             {% else %}<a href="{% url 'logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
             {% endif %}
         </div>
