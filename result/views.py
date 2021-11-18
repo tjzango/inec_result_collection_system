@@ -32,7 +32,6 @@ class LgaResultsView(View):
         context = {
 
         }
-        context['lgas'] = Lga.objects.all()
         if key != "":
             data = AnnouncedPuResults.objects.filter(polling_unit_uniqueid=key)
             context["lga_results"] = data        
