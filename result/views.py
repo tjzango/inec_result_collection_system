@@ -38,7 +38,7 @@ class BasePageView(View):
                     return redirect('store-results')
             except Exception as e:
                 messages.error(
-                    request, 'Email phone number does not match'.format(e))
+                    request, 'Email phone/number does not match {}'.format(e))
         return redirect('base')
 
 
