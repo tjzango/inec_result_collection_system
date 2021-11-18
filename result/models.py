@@ -34,7 +34,45 @@ class AnnouncedLgaResults(models.Model):
     class Meta:
         managed = False
         db_table = 'announced_lga_results'
+class States(models.Model):
+    state_id = models.IntegerField(primary_key=True)
+    state_name = models.CharField(max_length=50)
 
+    class Meta:
+        managed = False
+        db_table = 'states'
+
+
+
+
+class Ward(models.Model):
+    uniqueid = models.AutoField(primary_key=True)
+    ward_id = models.IntegerField()
+    ward_name = models.CharField(max_length=50)
+    lga_id = models.IntegerField()
+    ward_description = models.TextField(blank=True, null=True)
+    entered_by_user = models.CharField(max_length=50)
+    date_entered = models.DateTimeField()
+    user_ip_address = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'ward'
+
+class Lga(models.Model):
+    uniqueid = models.AutoField(primary_key=True)
+    lga_id = models.IntegerField()
+    lga_name = models.CharField(max_length=50)
+    state_id = models.ForeignKey(
+        States, on_delete=models.CASCADE, db_column="state_id")  # IntegerField()
+    lga_description = models.TextField(blank=True, null=True)
+    entered_by_user = models.CharField(max_length=50)
+    date_entered = models.DateTimeField()
+    user_ip_address = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'lga'
 
 class PollingUnit(models.Model):
     uniqueid = models.AutoField(primary_key=True)
@@ -114,41 +152,3 @@ class Party(models.Model):
         db_table = 'party'
 
 
-class States(models.Model):
-    state_id = models.IntegerField(primary_key=True)
-    state_name = models.CharField(max_length=50)
-
-    class Meta:
-        managed = False
-        db_table = 'states'
-
-
-class Lga(models.Model):
-    uniqueid = models.AutoField(primary_key=True)
-    lga_id = models.IntegerField()
-    lga_name = models.CharField(max_length=50)
-    state_id = models.ForeignKey(
-        States, on_delete=models.CASCADE, db_column="state_id")  # IntegerField()
-    lga_description = models.TextField(blank=True, null=True)
-    entered_by_user = models.CharField(max_length=50)
-    date_entered = models.DateTimeField()
-    user_ip_address = models.CharField(max_length=50)
-
-    class Meta:
-        managed = False
-        db_table = 'lga'
-
-
-class Ward(models.Model):
-    uniqueid = models.AutoField(primary_key=True)
-    ward_id = models.IntegerField()
-    ward_name = models.CharField(max_length=50)
-    lga_id = models.IntegerField()
-    ward_description = models.TextField(blank=True, null=True)
-    entered_by_user = models.CharField(max_length=50)
-    date_entered = models.DateTimeField()
-    user_ip_address = models.CharField(max_length=50)
-
-    class Meta:
-        managed = False
-        db_table = 'ward'

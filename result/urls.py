@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import BasePage
+from .views import BasePageView, LgaResultsView
 
 
 urlpatterns = [
-    path('', BasePage.as_view(), name='base'),
+    path('', BasePageView.as_view(), name='base'),
+    path('lga/', LgaResultsView.as_view(), name='lga-result'),
+
 ]

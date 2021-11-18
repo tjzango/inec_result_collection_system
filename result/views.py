@@ -14,7 +14,18 @@ from .models import (
 )
 
 # Create your views here.
-class BasePage(View):
+class BasePageView(View):
+    
+    def get(self, request, **kwarg):
+        context = {
+
+        }
+        
+        context['polling_units_relults'] = AnnouncedPuResults.objects.all(),
+        return render(request,"home.html", context)
+
+
+class LgaResultsView(View):
     
     def get(self, request, **kwarg):
         key = request.GET.get('lg')
@@ -23,11 +34,9 @@ class BasePage(View):
         }
         context['lgas'] = Lga.objects.all()
         if key != "":
-            data = AnnouncedPuResults.objects.filter(polling_unit_uniqueid=key)
+            data = AnnouncedPuResults.objects.filter(uniqueid=key)
             context["lga_results"] = data        
             return render(request,"lga.html", context)
         
         context['polling_units_relults'] = AnnouncedPuResults.objects.all(),
         return render(request,"lga.html", context)
-
-    
