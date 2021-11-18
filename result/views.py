@@ -87,8 +87,11 @@ class StoreResultsView(View):
     def get(self, request, **kwarg):
         if 'polling_unit' in request.session:
             polling_unit = request.session['polling_unit']
-            polling = PollingUnit.objects.get(uniqueid=int(polling_unit))
-
+            try:
+                polling = PollingUnit.objects.get(uniqueid=int(polling_unit))
+            except PollingUnit.DoesNotExist:
+                messages.error(request, "Your Poling unit does not exit")
+                polling = None
             context = {
                 'polling_unit': polling,
                 'polling_form': PollingForm() 
