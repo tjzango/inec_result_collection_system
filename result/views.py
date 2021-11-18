@@ -35,13 +35,13 @@ class BasePageView(View):
             phone = form.cleaned_data['phone']
             try:
                 print (phone)
-                user = Agentname.objects.get(email=email, phone=phone)
+                user = Agentname.objects.get(email=email)
                 if user:
                     request.session['is_actove'] = True
                     return redirect('store-results')
             except Exception as e:
                 messages.error(
-                    request, 'Email phone/number does not match {}')
+                    request, 'Email phone/number does not match')
         return redirect('base')
 
 
