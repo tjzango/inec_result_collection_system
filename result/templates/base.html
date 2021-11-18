@@ -106,11 +106,11 @@
             <form  method="post"> {% csrf_token %}
                 <div class="w3-section">
                     <label>Email</label>
-                    {% render_field form.email class="w3-input w3-border" name="Name" requigreen %}%
+                    {% render_field form.email class="w3-input w3-border" name="Name"  %}
                 </div>
                 <div class="w3-section">
                     <label>Phone Number</label>
-                    {% render_field form.phone class="w3-input w3-border" name="Name" requigreen %}
+                    {% render_field form.phone class="w3-input w3-border" name="Name"  %}
                 </div>
                 <button type="submit"
                     class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Login</button>
