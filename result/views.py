@@ -73,6 +73,7 @@ class LgaResultsView(View):
                 user = Agentname.objects.get(email=email, phone=phone)
                 if user.email == email and user.phone==phone:
                     request.session['is_active'] = True
+                    request.session['polling_unit'] = user.pollingunit_uniqueid
                     return redirect('store-result')
             except Exception as e:
                 messages.error(
