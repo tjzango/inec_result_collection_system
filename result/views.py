@@ -26,7 +26,7 @@ class BasePageView(View):
         
         return render(request,"home.html", context)
     
-    def post(request):
+    def post(self, request):
         form = UserLoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data["email"]
@@ -59,7 +59,7 @@ class LgaResultsView(View):
         
         return render(request,"lga.html", context)
 
-    def post(request):
+    def post(self, request):
         form = UserLoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data["email"]
