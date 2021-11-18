@@ -14,4 +14,4 @@ class PollingForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-control'}))
     class Meta:
         model = AnnouncedPuResults
-        include = ('party_score')
+        fields = ('party_score')
