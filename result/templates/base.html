@@ -89,13 +89,7 @@
 
     <!-- !PAGE CONTENT! -->
     <div class="w3-main" style="margin-left:340px;margin-right:40px">
-         {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-danger" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+         
         <!-- Header -->
        {% block content %}
        {% endblock content %}
@@ -105,6 +99,13 @@
 
 
         <!-- Login -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
         <div class="w3-container" id="contact" style="margin-top:75px">
             <h1 class="w3-xxxlarge w3-text-green"><b>Login.</b></h1>
             <hr style="width:50px;border:5px solid green" class="w3-round">
