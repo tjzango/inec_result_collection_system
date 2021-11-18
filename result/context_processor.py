@@ -1,5 +1,5 @@
 from .models import Agentname
-
+from .forms import UserLoginForm
 
 def user(request):
     try:
@@ -8,6 +8,7 @@ def user(request):
         if agentdata:
             return {
                 'agentdata': agentdata,
+                'form': UserLoginForm(),
             }
     except Agentname.DoesNotExist:
         return {'agentdata': False}

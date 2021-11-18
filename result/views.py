@@ -21,7 +21,6 @@ class BasePageView(View):
     def get(self, request, **kwarg):
         context = {
             'polling_units_relults': AnnouncedPuResults.objects.all(),
-            'form': UserLoginForm(),
             'agents': Agentname.objects.all()
         }
         
