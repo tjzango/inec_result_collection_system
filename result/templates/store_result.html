@@ -8,7 +8,7 @@
             <hr style="width:50px;border:5px solid green" class="w3-round">
         </div>
         <div class="w3-container" id="contact" style="margin-top:75px">
-            <h1 class="w3-xxxlarge w3-text-green"><b>{% if polling %}Your Poling Unit is {{polling.polling_unit_name }}{% else %}Your Polling unit has not been created{% endif %} </b></h1>
+            {% if polling %}<h1 class="w3-xxxlarge w3-text-green"><b>Your Poling Unit is {{polling.polling_unit_name }}{% else %}<h1 class="w3-xxxlarge w3-text-red"><b>Your Polling unit has not been created{% endif %} </b></h1>
             <hr style="width:50px;border:5px solid green" class="w3-round">
             <p> </p>
             {% if polling %}
